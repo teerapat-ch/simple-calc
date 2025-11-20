@@ -7,8 +7,15 @@ const Calculator = () => {
   const [historyDisplay, setHistoryDisplay] = useState("");
   const [display, setDisplay] = useState("");
   const [isOperated, setIsOperated] = useState(false)
+  const [canEdit, setCanEdit] = useState(false);
 
   const AddText = (x: String) => {
+    if (canEdit) {
+        Clear();
+        setCanEdit(false);
+        setDisplay("" + x);
+        return;
+    }
     if ((x == '+' || x == '-' || x == 'x' || x == '/') && !isOperated) {
         setIsOperated(true);
 
@@ -75,6 +82,7 @@ const Calculator = () => {
     setNumA(0);
     setHistoryDisplay("");
     setDisplay(String(res));
+    setCanEdit(true);
   };
 
   return (
