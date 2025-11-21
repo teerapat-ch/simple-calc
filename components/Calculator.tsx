@@ -90,7 +90,7 @@ const Calculator = () => {
   };
 
   return (
-    <div className="grid grid-cols-4 mx-100 bg-base-300 p-5 rounded-2xl gap-1 shadow-xl/30">
+    <div className="grid grid-cols-4 lg:mx-80 md:mx-50 mx-10 bg-base-300 p-5 rounded-2xl gap-1 shadow-xl/30">
       <div className="col-span-4 flex justify-center items-end flex-col bg-base-100 h-20 p-5 mb-2 rounded-md inset-shadow-sm">
         <h1 className="text-md">{historyDisplay}</h1>
         <h1 className="text-3xl">{display}</h1>
