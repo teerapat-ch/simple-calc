@@ -9,16 +9,20 @@ const Calculator = () => {
   const [isOperated, setIsOperated] = useState(false)
   const [canEdit, setCanEdit] = useState(false);
 
+  const isOperator = (x: String) => {
+    return x == '+' || x == '-' || x == 'x' || x == '/';
+  }
+
   const AddText = (x: String) => {
-    if (canEdit) {
+    if (canEdit && !isOperator(x)) {
         Clear();
         setCanEdit(false);
         setDisplay("" + x);
         return;
     }
-    if ((x == '+' || x == '-' || x == 'x' || x == '/') && !isOperated) {
+    if (isOperator(x) && !isOperated) {
         setIsOperated(true);
-
+        setCanEdit(false);
         if (display != "") {
             Operate(x);
         }
@@ -26,7 +30,7 @@ const Calculator = () => {
             setDisplay(display + x);
         }
     }
-    else if ((x == '+' || x == '-' || x == 'x' || x == '/') && isOperated) {
+    else if (isOperator(x) && isOperated) {
         setDisplay(display)
     }
     else {
@@ -66,7 +70,7 @@ const Calculator = () => {
   const Operate = (x: String) => {
     let res = numA;
     if (numA != 0) {
-      res = Calculate(x);
+      res = Calculate(historyDisplay.substring(historyDisplay.length-1));
     }
     else {
         res = Number(display);
